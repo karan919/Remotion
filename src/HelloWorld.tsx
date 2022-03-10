@@ -1,12 +1,8 @@
 import {interpolate, Sequence, useCurrentFrame, useVideoConfig} from 'remotion';
-import {Logo} from './HelloWorld/Logo';
-import {Subtitle} from './HelloWorld/Subtitle';
-import {Title} from './HelloWorld/Title';
+import {TenGiphy} from './Giphy/TenGiphy';
+import { SpeedyGiphy } from './Giphy/SpeedyGiphy';
 
-export const HelloWorld: React.FC<{
-	titleText: string;
-	titleColor: string;
-}> = ({titleText, titleColor}) => {
+export const HelloWorld: React.FC<{}> = () => {
 	const frame = useCurrentFrame();
 	const videoConfig = useVideoConfig();
 
@@ -19,19 +15,14 @@ export const HelloWorld: React.FC<{
 			extrapolateRight: 'clamp',
 		}
 	);
-	const transitionStart = 25;
 
 	return (
 		<div style={{flex: 1, backgroundColor: 'white'}}>
 			<div style={{opacity}}>
-				<Sequence from={0} durationInFrames={videoConfig.durationInFrames}>
-					<Logo transitionStart={transitionStart} />
-				</Sequence>
-				<Sequence from={transitionStart + 10}>
-					<Title titleText={titleText} titleColor={titleColor} />
-				</Sequence>
-				<Sequence from={transitionStart + 50}>
-					<Subtitle />
+				<Sequence from={15} durationInFrames={videoConfig.durationInFrames}>
+				{/* <Sequence from={5} durationInFrames={300}> */}
+					<TenGiphy />
+					<SpeedyGiphy />
 				</Sequence>
 			</div>
 		</div>
